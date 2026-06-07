@@ -417,6 +417,8 @@ socket.on('gameRestart', () => {
   particles = [];
   prevBullets = [];
   inGame = true;
+  // 清掉舊的 gameState，避免 render loop 因 winner !== null 又把 overlay 顯示回來
+  if (gameState) gameState.winner = null;
 });
 
 socket.on('gameState', (state) => { gameState = state; });
