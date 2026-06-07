@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>DUEL — 1v1 Platform Fighter</title>
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+
+<!-- ── Lobby ───────────────────────────────────────────────────────────── -->
+<div id="lobby">
+  <div class="lobby-inner">
+    <h1 class="game-title">DUEL</h1>
+    <p class="subtitle">1v1 Platform Fighter</p>
+
+    <div class="input-group">
+      <label for="roomInput">ROOM ID</label>
+      <input id="roomInput" type="text" maxlength="12" placeholder="輸入或建立房間" autocomplete="off" spellcheck="false" />
+    </div>
+
+    <button id="joinBtn" class="btn-primary">JOIN / CREATE</button>
+
+    <div id="lobbyStatus" class="lobby-status"></div>
+
+    <div class="controls-hint">
+      <div class="hint-col">
+        <span class="hint-label">移動</span>
+        <span class="hint-key">A / D</span>
+      </div>
+      <div class="hint-col">
+        <span class="hint-label">跳躍</span>
+        <span class="hint-key">W / Space</span>
+      </div>
+      <div class="hint-col">
+        <span class="hint-label">攻擊</span>
+        <span class="hint-key">J / Z</span>
+      </div>
+      <div class="hint-col">
+        <span class="hint-label">衝刺</span>
+        <span class="hint-key">K / X</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ── Game ────────────────────────────────────────────────────────────── -->
+<div id="gameScreen" style="display:none">
+  <canvas id="gameCanvas"></canvas>
+
+  <!-- HUD -->
+  <div id="hud">
+    <div class="hud-player" id="hud0">
+      <div class="hud-name">P1 <span class="hud-you" id="youLabel0"></span></div>
+      <div class="hud-bar-wrap">
+        <div class="hud-bar" id="hpBar0"></div>
+      </div>
+      <div class="hud-hp" id="hpNum0">100</div>
+    </div>
+    <div class="hud-center">
+      <span id="roomLabel"></span>
+    </div>
+    <div class="hud-player right" id="hud1">
+      <div class="hud-name">P2 <span class="hud-you" id="youLabel1"></span></div>
+      <div class="hud-bar-wrap">
+        <div class="hud-bar" id="hpBar1"></div>
+      </div>
+      <div class="hud-hp" id="hpNum1">100</div>
+    </div>
+  </div>
+
+  <!-- Result overlay -->
+  <div id="resultOverlay" style="display:none">
+    <div class="result-box">
+      <div id="resultText"></div>
+      <button id="restartBtn" class="btn-primary">REMATCH</button>
+      <div class="result-hint">（任一方按下即重開）</div>
+    </div>
+  </div>
+
+  <!-- Waiting overlay -->
+  <div id="waitingOverlay">
+    <div class="waiting-box">
+      <div class="waiting-spinner"></div>
+      <div id="waitingText">等待對手加入…</div>
+    </div>
+  </div>
+</div>
+
+<script src="/socket.io/socket.io.js"></script>
+<script src="js/game.js"></script>
+</body>
+</html>
